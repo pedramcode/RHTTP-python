@@ -1,11 +1,17 @@
 from setuptools import setup
+from pathlib import Path
+
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='rhttp_python',
-    version='0.0.2',
+    version='0.0.3',
     description='RHTTP python interface',
     url='https://github.com/pedramcode/RHTTP-python',
     author='Pedram Dehghanpour',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     author_email='dev.dehghanpour@gmail.com',
     license='MIT',
     packages=['rhttp_python'],
