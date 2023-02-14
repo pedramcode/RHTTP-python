@@ -117,7 +117,7 @@ class Response:
         self.body = ""
         self.status_code = 200
         self.message = http_status_code_to_message(self.status_code)
-        self.headers = dict()
+        self.headers = {}
 
     def status(self, code: int):
         self.status_code = code
@@ -125,7 +125,7 @@ class Response:
         return self
 
     def header(self, headers):
-        self.headers = {**self.headers, **headers}
+        self.headers.update(headers)
 
     def content_type(self, content_type: str):
         self.content_type_ = content_type
@@ -140,6 +140,7 @@ class Response:
                 "Content-Type": self.content_type_,
                 "Content-Length": len(self.body),
                 "X-Socket-ID": self.request["headers"]["X-Socket-ID"],
+                **self.headers
             },
             "body": self.body,
         })
@@ -158,7 +159,11 @@ async def reader(channel: redis.client.PubSub, redis_context: redis.Redis, name:
                 found = False
                 for ep in endpoints:
                     if ep["path"] == req["path"] and ep["method"] == req["method"]:
-                        res = ep["callback"](req, Response(req))
+                        res_pre = Response(req)
+                        res_pre.headers.update({"X-RES-SERVER": name})
+                        print(res_pre.headers)
+                        res = ep["callback"](req, res_pre)
+                        print(res_pre.headers)
                         await redis_context.publish("RESPONSE_PIPE", res)
                         found = True
                         break
