@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='rhttp_python',
-    version='0.0.1',
+    version='0.0.2',
     description='RHTTP python interface',
     url='https://github.com/pedramcode/RHTTP-python',
     author='Pedram Dehghanpour',

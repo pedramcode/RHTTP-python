@@ -117,11 +117,15 @@ class Response:
         self.body = ""
         self.status_code = 200
         self.message = http_status_code_to_message(self.status_code)
+        self.headers = dict()
 
     def status(self, code: int):
         self.status_code = code
         self.message = http_status_code_to_message(self.status_code)
         return self
+
+    def header(self, headers):
+        self.headers = {**self.headers, **headers}
 
     def content_type(self, content_type: str):
         self.content_type_ = content_type
