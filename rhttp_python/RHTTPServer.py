@@ -211,6 +211,7 @@ class RHTTPServer:
         self.__add_ep(path, "TRACE", callback)
 
     async def listen(self):
+        print("Server is listening to Redis")
         r = await redis.from_url(f"redis://{self.host}:{self.port}")
         self.redis_context = r
         async with self.redis_context.pubsub() as pubsub:
