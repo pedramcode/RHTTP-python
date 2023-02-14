@@ -161,9 +161,7 @@ async def reader(channel: redis.client.PubSub, redis_context: redis.Redis, name:
                     if ep["path"] == req["path"] and ep["method"] == req["method"]:
                         res_pre = Response(req)
                         res_pre.headers.update({"X-RES-SERVER": name})
-                        print(res_pre.headers)
                         res = ep["callback"](req, res_pre)
-                        print(res_pre.headers)
                         await redis_context.publish("RESPONSE_PIPE", res)
                         found = True
                         break
