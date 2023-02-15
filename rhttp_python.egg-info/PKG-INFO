@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: rhttp-python
-Version: 0.0.4
+Version: 0.0.7
 Summary: RHTTP python interface
 Home-page: https://github.com/pedramcode/RHTTP-python
 Author: Pedram Dehghanpour
@@ -29,12 +29,10 @@ pip install rhttp-python
 ```
 
 ## Usage
-First you need to import required packages:
+First you need to import required package:
 ```python
 # RHTTP server
 from rhttp_python import RHTTPServer
-# Asyncio library for running server
-import asyncio
 ```
 
 First you need to create server by passing redis host and port:
@@ -56,7 +54,7 @@ First parameter of decorator is "path" of endpoint and second is http method
 
 At the end you need run server:
 ```python
-asyncio.run(server.listen())
+server.listen()
 ```
 
 

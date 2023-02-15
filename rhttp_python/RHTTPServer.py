@@ -217,7 +217,7 @@ class RHTTPServer:
     def trace(self, path, callback):
         self.__add_ep(path, "TRACE", callback)
 
-    async def listen(self):
+    async def __listen_asyncio(self):
         print("Server is listening to Redis")
         r = await redis.from_url(f"redis://{self.host}:{self.port}")
         self.redis_context = r
@@ -225,3 +225,6 @@ class RHTTPServer:
             await pubsub.subscribe("REQUEST_PIPE", "HEARTBEAT")
             future = asyncio.create_task(reader(pubsub, self.redis_context, self.name, self.desc, self.endpoints))
             await future
+
+    def listen(self):
+        asyncio.run(self.__listen_asyncio())

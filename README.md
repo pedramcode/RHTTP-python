@@ -8,12 +8,10 @@ pip install rhttp-python
 ```
 
 ## Usage
-First you need to import required packages:
+First you need to import required package:
 ```python
 # RHTTP server
 from rhttp_python import RHTTPServer
-# Asyncio library for running server
-import asyncio
 ```
 
 First you need to create server by passing redis host and port:
@@ -35,7 +33,7 @@ First parameter of decorator is "path" of endpoint and second is http method
 
 At the end you need run server:
 ```python
-asyncio.run(server.listen())
+server.listen()
 ```
 
 
