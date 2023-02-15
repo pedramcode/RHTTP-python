@@ -6,7 +6,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='rhttp_python',
-    version='0.0.7',
+    version='0.1.0',
     description='RHTTP python interface',
     url='https://github.com/pedramcode/RHTTP-python',
     author='Pedram Dehghanpour',
